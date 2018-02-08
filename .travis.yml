@@ -17,7 +17,7 @@ jobs:
     script:
     - ./include/travis/run_in_centos7_docker.sh include/travis/mock_build_test.sh
   - stage: deploy
-    if: branch =~ ^v\d+\.\d+\.\d+$
+    if: branch =~ ^v\d+\.\d+\.\d+-.+$
     language: generic
     env: Type='Copr deploy'
     sudo: required
