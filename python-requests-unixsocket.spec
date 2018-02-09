@@ -29,7 +29,7 @@ requests_unixsocket.Session() Access /path/to/page from /tmp/profilesvc.sock
 Summary:        %{summary}
 %{?python_provide:%python_provide python2-%{pypi_name}}
 
-Requires:       python2-requests >= 1.1
+Requires:       python-requests >= 1.1
 Requires:       python-urllib3 >= 1.8
 %description -n python2-%{pypi_name}
 requests-unixsocket Use requests < to talk HTTP via a UNIX domain
