@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.1.5
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Use requests to talk HTTP via a UNIX domain socket
 
 License:        Apache-2
