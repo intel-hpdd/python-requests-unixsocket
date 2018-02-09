@@ -87,9 +87,5 @@ rm -rf %{pypi_name}.egg-info
 - Need to override pyp2rpm's Requires: python2-urllib3 >= 1.8 as
   urllib3 has not been migrated to python{2,3} yet.
 
-* Tue Feb 06 2018 Brian J. Murrell <brian.murrell@intel.com> - 0.1.5-2
-- Need to override pyp2rpm's Requires: python2-urllib3 >= 1.8 as
-  urllib3 has not been migrated to python{2,3} yet.
-
 * Wed Jan 24 2018 Brian J. Murrell <brian.murrell@intel.com> - 0.1.5-1
 - Initial package.
