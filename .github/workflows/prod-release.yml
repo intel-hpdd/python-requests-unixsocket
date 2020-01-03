@@ -1,0 +1,24 @@
+name: prod-release
+on:
+  push:
+    tags:
+      - v*-r5.1
+jobs:
+  push_copr_prod:
+    name: Push to Copr prod
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v1
+
+      - name: Push RPM
+        uses: ./.github/actions/copr
+        env:
+          PROD: true
+          OWNER: managerforlustre
+          PROJECT: manager-for-lustre-5.1
+          PACKAGE: python-requests-unixsocket
+          SPEC: python-requests-unixsocket.spec
+          WORKSPACE: ${{ github.workspace }}
+          KEY: ${{ secrets.key }}
+          IV: ${{ secrets.iv }}
