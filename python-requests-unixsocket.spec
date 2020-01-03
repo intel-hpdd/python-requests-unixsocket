@@ -1,9 +1,9 @@
-# Created by pyp2rpm-3.2.3
+# Created by pyp2rpm-3.3.3
 %global pypi_name requests-unixsocket
 
 Name:           python-%{pypi_name}
-Version:        0.1.5
-Release:        3%{?dist}
+Version:        0.2.0
+Release:        1%{?dist}
 Summary:        Use requests to talk HTTP via a UNIX domain socket
 
 License:        Apache-2
@@ -16,14 +16,14 @@ BuildRequires:  python2-pbr
 BuildRequires:  python2-setuptools
 
 BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-pbr
+BuildRequires:  python34-pbr
 BuildRequires:  python%{python3_pkgversion}-setuptools
 
 %description
 requests-unixsocket Use requests < to talk HTTP via a UNIX domain
 socketUsage++++++++You can use it by instantiating a special Session object:..
-code-block:: python import requests_unixsocket session
-requests_unixsocket.Session() Access /path/to/page from /tmp/profilesvc.sock
+code-block:: python import json import requests_unixsocket session
+requests_unixsocket.Session()
 
 %package -n     python2-%{pypi_name}
 Summary:        %{summary}
@@ -34,8 +34,8 @@ Requires:       python-urllib3 >= 1.8
 %description -n python2-%{pypi_name}
 requests-unixsocket Use requests < to talk HTTP via a UNIX domain
 socketUsage++++++++You can use it by instantiating a special Session object:..
-code-block:: python import requests_unixsocket session
-requests_unixsocket.Session() Access /path/to/page from /tmp/profilesvc.sock
+code-block:: python import json import requests_unixsocket session
+requests_unixsocket.Session()
 
 %package -n     python%{python3_pkgversion}-%{pypi_name}
 Summary:        %{summary}
@@ -46,8 +46,8 @@ Requires:       python%{python3_pkgversion}-urllib3 >= 1.8
 %description -n python%{python3_pkgversion}-%{pypi_name}
 requests-unixsocket Use requests < to talk HTTP via a UNIX domain
 socketUsage++++++++You can use it by instantiating a special Session object:..
-code-block:: python import requests_unixsocket session
-requests_unixsocket.Session() Access /path/to/page from /tmp/profilesvc.sock
+code-block:: python import json import requests_unixsocket session
+requests_unixsocket.Session()
 
 
 %prep
@@ -60,10 +60,9 @@ rm -rf %{pypi_name}.egg-info
 %py3_build
 
 %install
-# Must do the subpackages' install first because the scripts in /usr/bin are
-# overwritten with every setup.py install.
+# Must do the default python version install last because
+# the scripts in /usr/bin are overwritten with every setup.py install.
 %py3_install
-
 %py2_install
 
 
@@ -71,7 +70,7 @@ rm -rf %{pypi_name}.egg-info
 %license LICENSE
 %doc README.rst
 %{python2_sitelib}/requests_unixsocket
-%{python2_sitelib}/requests_unixsocket-%{version}-py?.?.egg-info
+%{python2_sitelib}/requests_unixsocket-%{version}-py%{python2_version}.egg-info
 
 %files -n python%{python3_pkgversion}-%{pypi_name}
 %license LICENSE
@@ -80,6 +79,9 @@ rm -rf %{pypi_name}.egg-info
 %{python3_sitelib}/requests_unixsocket-%{version}-py?.?.egg-info
 
 %changelog
+* Fri Jan 03 2020 Joe grund <jgrund@whamcloud.com> - 0.2.0-1
+- Bump to 0.2.0
+
 * Fri Feb 09 2018 Tom Nabarro <tom.nabarro@intel.com> - 0.1.5-3
 - Use python-requests dependency instead of python2-requests.
 
